@@ -79,6 +79,11 @@ def MakeMidi(OutputPath: pathlib.Path):
         for AA in A:
             f1.write(AA.hex(" ").upper() + "\n")
 
+    # Write as a .SYX file (simple binary with no SMF wrapper)
+    with open(OutputPath.with_suffix(".SYX"), "wb") as f1:
+        for AA in A:
+            f1.write(AA)
+
     # Create a SMF file
     with open(OutputPath.with_suffix(".MID"), "wb") as f2:
         # Write the header. FORMAT-1 MIDI file, 2 tracks, 96 ticks-per-quarter
